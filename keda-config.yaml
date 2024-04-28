@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mssql-secrets
+type: Opaque
+data:
+  mssql-connection-string: echo "Server=mssql-deployment.default.svc.cluster.local;port=1433;Database=ProdcutsDB;Persist Security Inf
+o=False;User ID=SA;Password=yourpassword;Encrypt=False;TrustServerCertificate=True;" | base64
+---
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: keda-trigger-auth-mssql-secret
+spec:
+  secretTargetRef:
+  - parameter: connectionString
+    name: mssql-secrets
+    key: mssql-connection-string
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: mssql-scaledobject
+spec:
+  scaleTargetRef:
+    name: webapp # e.g. the name of the resource to scale
+  pollingInterval: 1 # Optional. Default: 30 seconds
+  cooldownPeriod: 30 # Optional. Default: 300 seconds
+  minReplicaCount: 1 # Optional. Default: 0
+  maxReplicaCount: 15 # Optional. Default: 100
+  triggers:
+  - type: mssql
+    metadata:
+      targetValue: "5"
+      query: "SELECT count(*) FROM backlog WHERE state  = 'queued'"
+    authenticationRef:
+      name: keda-trigger-auth-mssql-secret
