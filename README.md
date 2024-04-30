@@ -65,6 +65,7 @@ Use the PVC in your Deployment: Finally, you can use the PVC in your Deployment.
 Remember to replace all placeholders with your actual values. Always refer to the official Kubernetes and Azure documentation for the most accurate and detailed instructions.
 
 ---
+<img width="610" alt="image" src="https://github.com/hailugebru/Kubernetes-autoscaling-with-keda/assets/106278023/80a530f1-e409-48c4-92eb-121bdaa82bd1">
 
 To connect to the SQL Server running on AKS from your local machine using SQL Server Management Studio (SSMS), you can follow these steps:
 
