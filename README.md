@@ -1,5 +1,5 @@
 # aks-keda
-This is reposotory contains scripts used in the blog post of using mssql as KEDA trigger in Azure Kubernetes Service.
+This is reposotory contains scripts used in the blog post (https://techcommunity.microsoft.com/t5/apps-on-azure-blog/autoscaling-of-microservice-apps-on-azure-leveraging-azure/ba-p/4124778) of using mssql as KEDA trigger in Azure Kubernetes Service.
 
 The purpose of this blog post is to guide you through the process of setting up an autoscaled application on Azure Kubernetes Service (AKS) using Kubernetes-based Event-Driven Autoscaling (KEDA) triggered by Microsoft SQL Server (MSSQL) queries. By the end of the blog post, you will learn how to:
 
